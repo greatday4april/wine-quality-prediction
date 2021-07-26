@@ -5,8 +5,20 @@
 1. Github: https://github.com/greatday4april/wine-quality-prediction
 2. Docker image link: https://hub.docker.com/layers/jialinjit/wine-quality-prediction/v1/images/sha256:ab1e5ec8451860b36fde549cb2837c1fcac03aca3e68c7cdafc424b341f9643a
 
+To run the docker, assume the test data file name is `TestingDataset.csv`, then after cd into the folder contains the test data file
+`sudo docker run -v "$(pwd)":/data jialinjit/wine-quality-prediction:v1 /data/TestingDataset.csv`
 
-## Training
+(this mounts the folder as `/data` in container and run the script against `/data/TestingDataset.csv`)
+
+### Without docker
+
+1. Clone the repository and install java if hasn't
+2. `pip3 install -r requirements.txt`
+3. `python3 prediction-app.py TestingDataset.csv`
+
+## Training Result
+
+Based on validation data
 
 ```bash
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
@@ -79,5 +91,5 @@ debug: false
 1. Install docker https://docs.docker.com/docker-for-mac/install/
 2. Create `Dockerfile` with dependency install
 3. `sudo docker build -t wine-quality-prediction .`
-4. cd into the folder contains the data file, assume the data file name is ``
+4. cd into the folder contains the data file, assume the data file name is `TestingDataset.csv`, then
 `sudo docker run -v "$(pwd)":/data wine-quality-prediction /data/TestingDataset.csv`
